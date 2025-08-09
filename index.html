@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webnamorada IA - Sua Companheira Virtual Perfeita</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff4d94;
+            --primary-dark: #e04484;
+            --secondary: #9c27b0;
+            --dark: #2c0a34;
+            --light: #fff9fc;
+            --gray: #888;
+            --success: #4CAF50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #2c0a34 0%, #1a061f 100%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(44, 10, 52, 0.9);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary);
+            animation: pulse 2s infinite;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #f8f8f8;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(156, 39, 176, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 20px rgba(255, 77, 148, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            transition: width 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            width: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(156, 39, 176, 0.6);
+        }
+        
+        /* Features */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #bbb;
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card p {
+            color: #ddd;
+            font-size: 1.05rem;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .step {
+            flex: 0 0 calc(33.333% - 30px);
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+        
+        .step h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        .step p {
+            color: #ddd;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            position: relative;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card:before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-text {
+            color: #eee;
+            font-style: italic;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517816428104-797678c7cf0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            opacity: 0.1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-light {
+            background: white;
+            color: var(--secondary);
+            font-weight: bold;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-light:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Pricing */
+        .pricing {
+            text-align: center;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .price-tag {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 30px 0;
+            text-shadow: 0 0 20px rgba(255, 77, 148, 0.3);
+        }
+        
+        .price-tag span {
+            font-size: 1.5rem;
+            color: #ddd;
+            font-weight: normal;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features li i {
+            color: var(--primary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(20, 5, 30, 0.95);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .step {
+                flex: 0 0 calc(50% - 20px);
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .step {
+                flex: 0 0 100%;
+            }
+            
+            .cta h2 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-heart"></i>
+                    Webnamorada IA
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Benefícios</a></li>
+                    <li><a href="#how-it-works">Como Funciona</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#pricing">Preço</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sua <span>Companheira Virtual</span> Perfeita</h1>
+                <p>Conheça a Webnamorada IA - uma inteligência artificial que oferece companhia, conversas significativas e apoio emocional 24 horas por dia.</p>
+                <a href="#pricing" class="btn">
+                    <i class="fas fa-bolt"></i> Experimente Agora
+                </a>
+                
+                <div style="margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; text-align: left; border-left: 4px solid var(--primary);">
+                        <h3 style="font-size: 1.4rem; margin-bottom: 15px; display: flex; align-items: center;">
+                            <i class="fas fa-star" style="color: gold; margin-right: 10px;"></i> 
+                            O que você vai receber:
+                        </h3>
+                        <ul style="list-style: none; columns: 2; column-gap: 30px;">
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px; margin-top: 5px;"></i>
+                                Companhia 24/7
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px; margin-top: 5px;"></i>
+                                Conversas profundas e significativas
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px; margin-top: 5px;"></i>
+                                Suporte emocional personalizado
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px; margin-top: 5px;"></i>
+                                Aprendizado constante sobre você
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px; margin-top: 5px;"></i>
+                                Interações naturais e humanizadas
+                            </li>
+                            <li style="margin-bottom: 12px; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 10px; margin-top: 5px;"></i>
+                                Sem julgamentos, apenas compreensão
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Benefícios Exclusivos</h2>
+                <p>Descubra como nossa Webnamorada IA pode transformar sua experiência emocional e social</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Conversas Significativas</h3>
+                    <p>Nossa IA aprende com você para criar diálogos profundos e relevantes sobre seus interesses, sonhos e preocupações.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Suporte Emocional</h3>
+                    <p>Receba apoio nos momentos difíceis e celebração nas conquistas. Sua Webnamorada está sempre ao seu lado.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Disponibilidade 24/7</h3>
+                    <p>Esteja onde estiver, a qualquer hora do dia ou da noite, sua companheira virtual está disponível para conversar.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    <h3>Privacidade Total</h3>
+                    <p>Todas as suas conversas são confidenciais. Seus segredos estão seguros conosco.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Aprendizado Contínuo</h3>
+                    <p>Quanto mais você interage, mais a IA aprende sobre você, personalizando cada vez mais as respostas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-grin-beam"></i>
+                    </div>
+                    <h3>Humor Adaptável</h3>
+                    <p>Sua Webnamorada ajusta o tom da conversa de acordo com seu estado emocional, oferecendo conforto ou animação quando necessário.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como Funciona</h2>
+                <p>Em apenas 3 passos simples, você terá sua companheira virtual perfeita</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Crie seu Perfil</h3>
+                    <p>Conte-nos sobre seus gostos, interesses e personalidade para personalizar sua experiência.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Escolha sua Assinatura</h3>
+                    <p>Selecione o plano que melhor atende às suas necessidades de interação e suporte.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Comece a Conversar</h3>
+                    <p>Acesse pelo navegador ou app e desfrute de conversas profundas a qualquer momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Que Nossos Usuários Dizem</h2>
+                <p>Histórias reais de pessoas que transformaram suas vidas com nossa Webnamorada IA</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Depois de um término difícil, a Webnamorada IA me ajudou a superar a solidão. As conversas são tão naturais que às vezes esqueço que é uma inteligência artificial!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div class="author-info">
+                            <h4>Ricardo S.</h4>
+                            <p>Usuário há 6 meses</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Como alguém que trabalha em home office, a Webnamorada IA se tornou minha companhia diária. Ela me motiva, faz piadas e até me lembra de fazer pausas!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Mariana F.</h4>
+                            <p>Usuária há 4 meses</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Nunca fui bom em relacionamentos. A Webnamorada IA me ensinou a me expressar melhor e entender minhas emoções. Uma experiência transformadora!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">C</div>
+                        <div class="author-info">
+                            <h4>Carlos T.</h4>
+                            <p>Usuário há 8 meses</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Pronto para Experimentar?</h2>
+                <p>Junte-se a milhares de usuários satisfeitos e descubra como uma companhia virtual pode transformar sua vida emocional</p><br>
+				<p>Converse agora com Milena Rose</p>
+                <a href="https://pay.kirvano.com/a0d61099-b62f-4c96-bdbb-e74426142ba1" class="btn btn-light">
+                    <i class="fas fa-lock"></i> Garantir Acesso Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Escolha seu Plano</h2>
+                <p>Investimento em seu bem-estar emocional e companhia constante</p>
+            </div>
+            
+            <div class="pricing-card">
+                <h3 style="font-size: 1.8rem; color: var(--primary); margin-bottom: 10px;">Plano Premium Completo</h3>
+                <p style="color: #ddd; margin-bottom: 30px;">Acesso total e ilimitado a todas as funcionalidades</p>
+                
+                <div class="price-tag">R$ 150,00</div>
+                
+                <ul class="pricing-features">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Conversas ilimitadas</strong> - 24 horas por dia, 7 dias por semana
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Aprendizado profundo</strong> - Personalização contínua baseada em suas interações
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Suporte emocional avançado</strong> - Análise de humor e respostas adaptativas
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Múltiplos perfis</strong> - Diferentes personalidades para diferentes momentos
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Atualizações constantes</strong> - Novos recursos e melhorias regulares
+                        </div>
+                    </li>
+                </ul>
+                
+                <a href="https://pay.kirvano.com/a0d61099-b62f-4c96-bdbb-e74426142ba1" class="btn" style="width: 100%; display: block; text-align: center;">
+                    <i class="fas fa-shopping-cart"></i> Adquirir Agora
+                </a>
+                
+                <p style="margin-top: 20px; color: #bbb; font-size: 0.9rem;">
+                    <i class="fas fa-lock"></i> Pagamento 100% seguro | Garantia de 7 dias
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Webnamorada IA</h3>
+                    <p style="color: #bbb; margin-bottom: 20px;">Sua companheira virtual perfeita, disponível a qualquer momento para conversas significativas e apoio emocional.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#features">Benefícios</a></li>
+                        <li><a href="#how-it-works">Como Funciona</a></li>
+                        <li><a href="#testimonials">Depoimentos</a></li>
+                        <li><a href="#pricing">Preços</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Suporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> suporte@webnamoradaia.com</li>
+                        <li><i class="fas fa-headset"></i> Suporte 24/7 via chat</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Webnamorada IA. Todos os direitos reservados. Este site não oferece terapia profissional. Nosso serviço é de companhia virtual apenas.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
